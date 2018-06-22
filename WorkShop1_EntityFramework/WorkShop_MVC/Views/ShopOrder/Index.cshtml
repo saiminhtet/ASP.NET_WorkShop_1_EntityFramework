@@ -1,0 +1,92 @@
+﻿@model WorkShop_MVC.Models.ViewModels.ShopOrdersViewModel
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+@*@Html.DrpDownList("ddlFoodlist", ViewBag.Foodlist as SelectList)*@
+@*@Html.DropDownListFor(model => model.Name, ViewBag.FoodList as SelectList)*@
+@*@foreach ( var item in ViewBag.SizeList)
+    {
+        @Html.RadioButtonFor(model => model.Name, ViewBag.SizeList as SelectList)
+        @Html.LabelFor(model => model.Name, ViewBag.SizeList as SelectList)
+        @item.Description
+    }*@
+
+@using (Html.BeginForm("Index", "ShopOrder", FormMethod.Post))
+{
+<br />
+<div class="panel panel-info" style="width: 115%">
+    <div class="panel-heading">
+        <h3 class="panel-title">Order Food</h3>
+    </div>
+    <div class="panel-body">
+        <div class="form-group has-success">
+            <div class="col-md-6">
+                <p class="row">
+                    @Html.LabelFor(model => model.Order.Username, new { @class = "text-info" })
+                    @Html.TextBoxFor(model => model.Order.Username, new { @class = "form-control" })
+
+                </p>
+                <hr />
+                <p class="row">
+                    @Html.Label("Food List", new { @class = "text-info" })
+                    <select id="SelectedFoodID" class="form-control" name="SelectedFoodID" style="width: 270px;">
+                        @if (Model.FoodList != null)
+                        {
+                            foreach (var item in Model.FoodList)
+                            {
+                                <option value="@item.ID" id="@item.ID">@item.Name</option>
+                            }
+                        }
+                        else
+                        {
+                            <option value="0" id="0">(Select Food Item)</option>
+                        }
+                    </select>
+                </p>
+                @*<p class="row">
+                    @Html.Label("Food List")
+                    @Html.DropDownListFor(model => model.FoodList, new SelectList(Enumerable.Empty<SelectList>(), "ID", "Name"),
+                   "--Select Food Item--", new { @class = "form-control", id = "FoodItem" })
+                </p>*@
+                <hr />
+                <p class="row">
+                    @Html.Label("Size", new { @class = "text-info" })
+                    <br />
+                    @foreach (var item in Model.SizeList)
+                    {
+
+                        @Html.RadioButtonFor(model => model.Size, item.ID) @:&nbsp;
+                        @Html.Label(item.Description)
+                        <br />
+                    }
+
+                </p>
+
+                <p class="row">
+                    <table class="table">
+                        <tr>
+                            <td class="col"> @Html.Label("Chilli") @Html.CheckBoxFor(model => model.Chilli) </td>
+                            <td class="col"> @Html.Label("MoreSalt") @Html.CheckBoxFor(model => model.MoreSalt)  </td>
+                            <td class="col">@Html.Label("Pepper") @Html.CheckBoxFor(model => model.Pepper)</td>
+                        </tr>
+                    </table>
+                </p>
+                <p class="row">
+                    <input type="submit" value="Order" class="btn btn-success" style="font-weight: bold; width: 100px;" />
+                </p>
+                
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+}

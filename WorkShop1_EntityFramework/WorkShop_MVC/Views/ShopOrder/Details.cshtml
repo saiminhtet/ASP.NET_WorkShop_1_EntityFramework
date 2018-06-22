@@ -1,0 +1,68 @@
+﻿@model WorkShop_MVC.Models.Order
+
+<div>
+    <h4>Order</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FoodID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FoodID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FoodName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FoodName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Size)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Size)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Chilli)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Chilli)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MoreSalt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MoreSalt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pepper)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pepper)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.OrderID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

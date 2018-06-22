@@ -1,0 +1,98 @@
+﻿@model WorkShop_MVC.Models.ViewModels.ShopOrdersViewModel
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>ShopOrdersViewModel</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+           @* @Html.LabelFor(model => model.OrderId, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.OrderId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.HiddenFor(model => model.User, new { htmlAttributes = new { @class = "form-control" } })
+
+            </div>
+        </div>
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.SelectedFoodID, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.SelectedFoodID, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.SelectedFoodID, "", new { @class = "text-danger" })
+                </div>*@
+            @Html.Label("Food List", new { @class = "text-info" })
+            <select id="SelectedFoodID" class="form-control" name="SelectedFoodID" style="width: 270px;">
+                @if (Model.FoodList != null)
+                {
+                    foreach (var item in Model.FoodList)
+                    {
+                        <option value="@item.ID" id="@item.ID">@item.Name</option>
+                    }
+                }
+                else
+                {
+                    <option value="0" id="0">(Select Food Item)</option>
+                }
+            </select>
+        </div>
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.Size, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Size, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Size, "", new { @class = "text-danger" })
+                </div>*@
+            @Html.Label("Size", new { @class = "text-info" })
+            <br />
+            @foreach (var item in Model.SizeList)
+            {
+
+                @Html.RadioButtonFor(model => model.Size, item.ID) @:&nbsp;
+                @Html.Label(item.Description)
+                <br />
+            }
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Chilli, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.Chilli)
+                    @Html.ValidationMessageFor(model => model.Chilli, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MoreSalt, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.MoreSalt)
+                    @Html.ValidationMessageFor(model => model.MoreSalt, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Pepper, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.Pepper)
+                    @Html.ValidationMessageFor(model => model.Pepper, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
